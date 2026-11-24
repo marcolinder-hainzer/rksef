@@ -111,7 +111,7 @@
 (function () {
 'use strict';
 
-const APP_BUILD = 2;                     // zusammen mit CACHE = 'sef-lernapp-v2' in sw.js erhöhen
+const APP_BUILD = 3;                     // zusammen mit CACHE = 'sef-lernapp-v3' in sw.js erhöhen
 const APP_VERSION = `${APP_BUILD} · 24.11.2026`;
 
 /* =====================================================================
@@ -496,7 +496,7 @@ function filterList() {
 }
 function renderFragenShell() {
   const chips = [['alle', 'Alle', FRAGEN.length], ...KATS.map(k => [k.id, k.kurz, FRAGEN.filter(q => q.k === k.id).length]),
-    ['falsch', 'Falsch', FRAGEN.filter(q => isWrong(q.id)).length], ['markiert', 'Markiert', state.marks.length], ['unbestaetigt', 'Unbestätigt', UNBESTAETIGT.length]];
+    ['falsch', 'Falsch', FRAGEN.filter(q => isWrong(q.id)).length], ['markiert', 'Markiert', state.marks.length], ...(UNBESTAETIGT.length ? [['unbestaetigt', 'Unbestätigt', UNBESTAETIGT.length]] : [])];
   return `<div class="sticky z-20 -mx-3 px-3 pb-2 bg-zinc-100/85 dark:bg-zinc-950/85 backdrop-blur-xl" style="top: calc(env(safe-area-inset-top) + 4rem);">
       <label class="flex items-center gap-2 h-11 px-4 rounded-full bg-white dark:bg-zinc-900 ring-1 ring-black/5 dark:ring-white/10 shadow-sm">
         <span class="text-zinc-400">${ico('search', 'w-[18px] h-[18px]')}</span>
@@ -855,7 +855,7 @@ function settingsHtml() {
     <div class="mt-5 rounded-2xl bg-white dark:bg-zinc-800/70 ring-1 ring-black/5 dark:ring-white/5 p-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
       <p class="font-semibold text-zinc-900 dark:text-zinc-50">Über diese App</p>
       <p class="mt-1">Inoffizielle Lernhilfe für die Ausbildung zum Sicheren Einsatzfahrer (SEF). Die ${FRAGEN.length} Fragen stammen aus dem Kurs „Fragen SEF“ (LV Tirol), aufgeteilt in ${KATS.length} Kategorien wie dort.</p>
-      <p class="mt-2">Bei ${UNBESTAETIGT.length} Fragen ist die Lösung ein <b>Vorschlag</b> (gelb markiert), weil sie in den Screenshots noch unbeantwortet waren.</p>
+      ${UNBESTAETIGT.length ? `<p class="mt-2">Bei ${UNBESTAETIGT.length} Fragen ist die Lösung ein <b>Vorschlag</b> (gelb markiert), weil sie in den Screenshots noch unbeantwortet waren.</p>` : ''}
       <p class="mt-2">Dein Lernstand wird nur auf diesem Gerät gespeichert.</p>
     </div>
     <p class="mt-4 mb-2 text-center text-xs font-medium text-zinc-400 dark:text-zinc-500">SEF Lernapp · Version ${APP_VERSION}</p>`;

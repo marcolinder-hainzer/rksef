@@ -4,7 +4,7 @@
    Updates: App-Seite und Fragenkatalog werden „Netz zuerst“ geladen (mit kurzem Zeitlimit, sonst aus
    dem Cache), und alle Downloads umgehen den Browser-Zwischenspeicher. So landet nach einem Update nie
    versehentlich eine alte Version im Cache (GitHub Pages erlaubt sonst 10 Min. Zwischenspeichern). */
-const CACHE = 'sef-lernapp-v2';
+const CACHE = 'sef-lernapp-v3';
 const SHELL = [
   './',
   './index.html',

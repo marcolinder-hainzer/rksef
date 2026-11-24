@@ -13,12 +13,7 @@ Sie sind in 5 Kategorien aufgeteilt, genau wie die Tests im Kurs:
 | Fahrzeugkunde | 3 |
 | **Gesamt** | **123** |
 
-> ⚠️ **24 Lösungen sind Vorschläge** (in der App gelb markiert mit „Lösung unbestätigt“):
-> Fahrphysik Frage 36–46 und 49 (12 Fragen) sowie Gefahrenlehre und Partnerkunde (12 Fragen, alle außer 6, 8, 10, 11).
-> Diese Fragen waren in den Screenshots noch unbeantwortet, darum zeigte der Kurs keine Lösung.
-> Fahrphysik 48 und Gefahrenlehre 6, 8, 10, 11 sind bereits korrigiert und bestätigt. So bekommst du die echten Lösungen:
-> Im Kurs bei der Frage eine Antwort wählen und auf **„Prüfen“** tippen. Dann steht dort „Die richtige Antwort ist …“.
-> Davon Screenshots machen, dann werden die Lösungen in der App korrigiert.
+Alle Lösungen sind bestätigt: aus dem Kurs („Die richtige Antwort ist …“) bzw. im Kurs selbst überprüft.
 
 Inoffizielle Lernhilfe, kein Angebot des Österreichischen Roten Kreuzes.
 
@@ -54,7 +49,7 @@ Inoffizielle Lernhilfe, kein Angebot des Österreichischen Roten Kreuzes.
 |---|---|
 | **Lernen** | „Weiterlernen“ startet eine Runde mit 10 Fragen: falsch beantwortete und neue Fragen zuerst. Nach jeder Frage „Prüfen“ → sofort sehen, was richtig ist. Darunter „Falsche wiederholen“, „Markierte Fragen“ und die 5 Kategorien (Lernen, alle der Reihe nach, Fehler wiederholen). |
 | **Prüfung** | Prüfungssimulation mit 20, 30, 50 oder allen Fragen aus allen Kategorien. Die Auflösung kommt erst am Ende, mit Ergebnis je Kategorie und allen Fehlern. Die letzten Ergebnisse bleiben gespeichert. |
-| **Fragen** | Alle Fragen mit Lösungen zum Durchlesen. Mit Suche und Filtern (Kategorie, Falsch, Markiert, Unbestätigt). Mit dem Schalter „Lösungen“ kannst du sie verdecken und dich selbst abfragen. |
+| **Fragen** | Alle Fragen mit Lösungen zum Durchlesen. Mit Suche und Filtern (Kategorie, Falsch, Markiert). Mit dem Schalter „Lösungen“ kannst du sie verdecken und dich selbst abfragen. |
 
 - **„Sicher“** gilt eine Frage, wenn du sie 2-mal hintereinander richtig beantwortet hast.
 - Wie im Kurs zählt eine Frage nur als richtig, wenn **alle** richtigen und **keine** falschen Antworten gewählt sind.

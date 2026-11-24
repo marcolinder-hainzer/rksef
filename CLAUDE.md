@@ -21,9 +21,10 @@ Gleicher Aufbau wie die frühere App des Nutzers „alpinwetter“.
 Screenshots aus dem Moodle-Kurs „Multiple Choice Fragen aus dem SEF Bereich“ (kurse.roteskreuz.at, LV Tirol, 24.11.2026).
 Lösungen aus „Die richtige(n) Antwort(en) ist/sind: …“ übernommen; offensichtliche Tippfehler des Kurses korrigiert.
 Fahrphysik Frage 47 war eine Doppelung von 46 → weggelassen (Fahrphysik hat daher 48 statt 49 Fragen).
-29 Fragen (Fahrphysik 36–49, Gefahrenlehre 1–16) waren unbeantwortet → `v: 0` mit begründetem Vorschlag.
-Vom Nutzer korrigiert und damit bestätigt (ohne `v`): Fahrphysik 48, Gefahrenlehre 6, 8, 10, 11 → noch 24 Vorschläge.
-Bekommt der Nutzer die echten Lösungen (im Kurs „Prüfen“ tippen), `r` korrigieren und `v`/`h` entfernen.
+29 Fragen (Fahrphysik 36–49, Gefahrenlehre 1–16) waren in den Screenshots unbeantwortet. Dafür gab es zuerst
+Lösungsvorschläge; der Nutzer hat alle im Kurs geprüft (Fahrphysik 48, Gefahrenlehre 6, 8, 10, 11 korrigiert).
+→ Seit Version 3 sind **alle 123 Lösungen bestätigt**. Die Markierung `v: 0` (+ Begründung `h`) bleibt im Code für
+künftige neue, unbestätigte Fragen: dann erscheinen Hinweis, Filter „Unbestätigt“ und gelbe Kennzeichnung automatisch.
 
 ## Aufbau von index.html (ein IIFE im letzten `<script>`)
 - **Zustand / localStorage:** `sef_stats_v1` (je Frage `{ n, ok, s (Serie), w, last, t }`), `sef_marks_v1`,
