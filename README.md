@@ -13,9 +13,10 @@ Sie sind in 5 Kategorien aufgeteilt, genau wie die Tests im Kurs:
 | Fahrzeugkunde | 3 |
 | **Gesamt** | **123** |
 
-> ⚠️ **29 Lösungen sind Vorschläge** (in der App gelb markiert mit „Lösung unbestätigt“):
-> Gefahrenlehre und Partnerkunde (alle 16) und Fahrphysik ab Frage 36 (13 Fragen). Diese Fragen waren in den
-> Screenshots noch unbeantwortet, darum zeigte der Kurs keine Lösung. So bekommst du die echten Lösungen:
+> ⚠️ **24 Lösungen sind Vorschläge** (in der App gelb markiert mit „Lösung unbestätigt“):
+> Fahrphysik Frage 36–46 und 49 (12 Fragen) sowie Gefahrenlehre und Partnerkunde (12 Fragen, alle außer 6, 8, 10, 11).
+> Diese Fragen waren in den Screenshots noch unbeantwortet, darum zeigte der Kurs keine Lösung.
+> Fahrphysik 48 und Gefahrenlehre 6, 8, 10, 11 sind bereits korrigiert und bestätigt. So bekommst du die echten Lösungen:
 > Im Kurs bei der Frage eine Antwort wählen und auf **„Prüfen“** tippen. Dann steht dort „Die richtige Antwort ist …“.
 > Davon Screenshots machen, dann werden die Lösungen in der App korrigiert.
 
