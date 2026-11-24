@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SEF Lernapp</title>
+<meta name="description" content="Lernapp mit den Multiple-Choice-Fragen zur Ausbildung „Sicherer Einsatzfahrer“ (SEF).">
+<meta name="theme-color" content="#f4f4f5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="SEF Lernapp">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>
+  /* Dunkelmodus vor dem ersten Zeichnen setzen (kein Aufblitzen) */
+  (function () {
+    try {
+      var t = JSON.parse(localStorage.getItem('sef_theme') || 'null');
+      var d = t === 'dark' || (t !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (d) document.documentElement.classList.add('dark');
+    } catch (e) {}
+  })();
+</script>
+<style id="tw">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.pointer-events-auto{pointer-events:auto}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-x-0{left:0;right:0}.inset-x-6{left:1.5rem;right:1.5rem}.inset-y-0{top:0;bottom:0}.bottom-0{bottom:0}.left-0{left:0}.top-0{top:0}.top-1\/2{top:50%}.z-20{z-index:20}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.z-\[60\]{z-index:60}.z-\[70\]{z-index:70}.z-\[80\]{z-index:80}.-mx-3{margin-left:-.75rem;margin-right:-.75rem}.mx-4{margin-left:1rem;margin-right:1rem}.mx-auto{margin-left:auto;margin-right:auto}.-mr-1{margin-right:-.25rem}.mb-2{margin-bottom:.5rem}.ml-auto{margin-left:auto}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-2\.5{margin-top:.625rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:.375rem}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-2{height:.5rem}.h-2\.5{height:.625rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-40{height:10rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[18px\]{height:18px}.h-full{height:100%}.max-h-\[88dvh\]{max-height:88dvh}.min-h-\[100dvh\]{min-height:100dvh}.\!w-28{width:7rem!important}.w-1\/3{width:33.333333%}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-14{width:3.5rem}.w-16{width:4rem}.w-2{width:.5rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-40{width:10rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-9{width:2.25rem}.w-\[18px\]{width:18px}.w-full{width:100%}.min-w-0{min-width:0}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%}.-translate-y-1\/2,.translate-x-5{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-5{--tw-translate-x:1.25rem}.translate-y-full{--tw-translate-y:100%}.-rotate-90,.translate-y-full{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-90{--tw-rotate:-90deg}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-3\.5{gap:.875rem}.gap-4{gap:1rem}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-zinc-100>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(244 244 245/var(--tw-divide-opacity,1))}.self-center{align-self:center}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.overscroll-contain{overscroll-behavior:contain}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-\[1\.5rem\]{border-radius:1.5rem}.rounded-\[1\.75rem\]{border-radius:1.75rem}.rounded-\[2rem\]{border-radius:2rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.rounded-t-\[1\.75rem\]{border-top-left-radius:1.75rem;border-top-right-radius:1.75rem}.border-t{border-top-width:1px}.border-zinc-200\/70{border-color:hsla(240,6%,90%,.7)}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199/var(--tw-bg-opacity,1))}.bg-amber-400{--tw-bg-opacity:1;background-color:rgb(251 191 36/var(--tw-bg-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-black\/40{background-color:rgba(0,0,0,.4)}.bg-black\/45{background-color:rgba(0,0,0,.45)}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254/var(--tw-bg-opacity,1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229/var(--tw-bg-opacity,1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.bg-red-100{--tw-bg-opacity:1;background-color:rgb(254 226 226/var(--tw-bg-opacity,1))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.bg-red-600{--tw-bg-opacity:1;background-color:rgb(220 38 38/var(--tw-bg-opacity,1))}.bg-rose-100{--tw-bg-opacity:1;background-color:rgb(255 228 230/var(--tw-bg-opacity,1))}.bg-rose-50{--tw-bg-opacity:1;background-color:rgb(255 241 242/var(--tw-bg-opacity,1))}.bg-rose-500{--tw-bg-opacity:1;background-color:rgb(244 63 94/var(--tw-bg-opacity,1))}.bg-rose-600{--tw-bg-opacity:1;background-color:rgb(225 29 72/var(--tw-bg-opacity,1))}.bg-sky-100{--tw-bg-opacity:1;background-color:rgb(224 242 254/var(--tw-bg-opacity,1))}.bg-sky-500{--tw-bg-opacity:1;background-color:rgb(14 165 233/var(--tw-bg-opacity,1))}.bg-transparent{background-color:transparent}.bg-violet-100{--tw-bg-opacity:1;background-color:rgb(237 233 254/var(--tw-bg-opacity,1))}.bg-violet-500{--tw-bg-opacity:1;background-color:rgb(139 92 246/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/20{background-color:hsla(0,0%,100%,.2)}.bg-white\/50{background-color:hsla(0,0%,100%,.5)}.bg-white\/90{background-color:hsla(0,0%,100%,.9)}.bg-zinc-100{--tw-bg-opacity:1;background-color:rgb(244 244 245/var(--tw-bg-opacity,1))}.bg-zinc-100\/85{background-color:hsla(240,5%,96%,.85)}.bg-zinc-100\/90{background-color:hsla(240,5%,96%,.9)}.bg-zinc-200{--tw-bg-opacity:1;background-color:rgb(228 228 231/var(--tw-bg-opacity,1))}.bg-zinc-200\/70{background-color:hsla(240,6%,90%,.7)}.bg-zinc-200\/80{background-color:hsla(240,6%,90%,.8)}.bg-zinc-300{--tw-bg-opacity:1;background-color:rgb(212 212 216/var(--tw-bg-opacity,1))}.bg-zinc-50{--tw-bg-opacity:1;background-color:rgb(250 250 250/var(--tw-bg-opacity,1))}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-red-600{--tw-gradient-from:#dc2626 var(--tw-gradient-from-position);--tw-gradient-to:rgba(220,38,38,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-red-700{--tw-gradient-to:rgba(185,28,28,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),#b91c1c var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-red-900{--tw-gradient-to:#7f1d1d var(--tw-gradient-to-position)}.stroke-zinc-200{stroke:#e4e4e7}.p-0\.5{padding:.125rem}.p-1{padding:.25rem}.p-3\.5{padding:.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-3\.5{padding-top:.875rem;padding-bottom:.875rem}.pb-0\.5{padding-bottom:.125rem}.pb-1{padding-bottom:.25rem}.pb-2{padding-bottom:.5rem}.pb-4{padding-bottom:1rem}.pl-3{padding-left:.75rem}.pr-1\.5{padding-right:.375rem}.pt-0\.5{padding-top:.125rem}.pt-1{padding-top:.25rem}.pt-2{padding-top:.5rem}.pt-2\.5{padding-top:.625rem}.pt-3{padding-top:.75rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-\[15px\]{font-size:15px}.text-\[18px\]{font-size:18px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-\[\.14em\]{letter-spacing:.14em}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11/var(--tw-text-opacity,1))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6/var(--tw-text-opacity,1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9/var(--tw-text-opacity,1))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14/var(--tw-text-opacity,1))}.text-amber-900{--tw-text-opacity:1;color:rgb(120 53 15/var(--tw-text-opacity,1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216/var(--tw-text-opacity,1))}.text-blue-800{--tw-text-opacity:1;color:rgb(30 64 175/var(--tw-text-opacity,1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129/var(--tw-text-opacity,1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105/var(--tw-text-opacity,1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87/var(--tw-text-opacity,1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70/var(--tw-text-opacity,1))}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59/var(--tw-text-opacity,1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38/var(--tw-text-opacity,1))}.text-red-700{--tw-text-opacity:1;color:rgb(185 28 28/var(--tw-text-opacity,1))}.text-rose-500{--tw-text-opacity:1;color:rgb(244 63 94/var(--tw-text-opacity,1))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72/var(--tw-text-opacity,1))}.text-rose-700{--tw-text-opacity:1;color:rgb(190 18 60/var(--tw-text-opacity,1))}.text-rose-800{--tw-text-opacity:1;color:rgb(159 18 57/var(--tw-text-opacity,1))}.text-rose-900{--tw-text-opacity:1;color:rgb(136 19 55/var(--tw-text-opacity,1))}.text-sky-700{--tw-text-opacity:1;color:rgb(3 105 161/var(--tw-text-opacity,1))}.text-sky-800{--tw-text-opacity:1;color:rgb(7 89 133/var(--tw-text-opacity,1))}.text-violet-700{--tw-text-opacity:1;color:rgb(109 40 217/var(--tw-text-opacity,1))}.text-violet-800{--tw-text-opacity:1;color:rgb(91 33 182/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-white\/75{color:hsla(0,0%,100%,.75)}.text-white\/80{color:hsla(0,0%,100%,.8)}.text-white\/85{color:hsla(0,0%,100%,.85)}.text-zinc-300{--tw-text-opacity:1;color:rgb(212 212 216/var(--tw-text-opacity,1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity,1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91/var(--tw-text-opacity,1))}.text-zinc-700{--tw-text-opacity:1;color:rgb(63 63 70/var(--tw-text-opacity,1))}.text-zinc-800{--tw-text-opacity:1;color:rgb(39 39 42/var(--tw-text-opacity,1))}.text-zinc-900{--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.line-through{text-decoration-line:line-through}.decoration-rose-400\/60{text-decoration-color:rgba(251,113,133,.6)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-100{opacity:1}.opacity-60{opacity:.6}.opacity-70{opacity:.7}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-2xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-lg,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-red-900\/20{--tw-shadow-color:rgba(127,29,29,.2);--tw-shadow:var(--tw-shadow-colored)}.outline-none{outline:2px solid transparent;outline-offset:2px}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring-1,.ring-2{box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.ring-2{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring-amber-200{--tw-ring-opacity:1;--tw-ring-color:rgb(253 230 138/var(--tw-ring-opacity,1))}.ring-black\/5{--tw-ring-color:rgba(0,0,0,.05)}.ring-emerald-200{--tw-ring-opacity:1;--tw-ring-color:rgb(167 243 208/var(--tw-ring-opacity,1))}.ring-emerald-400{--tw-ring-opacity:1;--tw-ring-color:rgb(52 211 153/var(--tw-ring-opacity,1))}.ring-emerald-500{--tw-ring-opacity:1;--tw-ring-color:rgb(16 185 129/var(--tw-ring-opacity,1))}.ring-red-500{--tw-ring-opacity:1;--tw-ring-color:rgb(239 68 68/var(--tw-ring-opacity,1))}.ring-rose-200{--tw-ring-opacity:1;--tw-ring-color:rgb(254 205 211/var(--tw-ring-opacity,1))}.ring-rose-500{--tw-ring-opacity:1;--tw-ring-color:rgb(244 63 94/var(--tw-ring-opacity,1))}.ring-white\/40{--tw-ring-color:hsla(0,0%,100%,.4)}.ring-zinc-200{--tw-ring-opacity:1;--tw-ring-color:rgb(228 228 231/var(--tw-ring-opacity,1))}.blur{--tw-blur:blur(8px)}.blur,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.placeholder\:text-zinc-400::-moz-placeholder{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.placeholder\:text-zinc-400::placeholder{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95}.active\:scale-95:active,.active\:scale-\[\.98\]:active{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-\[\.98\]:active{--tw-scale-x:.98;--tw-scale-y:.98}.active\:bg-red-700:active{--tw-bg-opacity:1;background-color:rgb(185 28 28/var(--tw-bg-opacity,1))}.active\:bg-rose-700:active{--tw-bg-opacity:1;background-color:rgb(190 18 60/var(--tw-bg-opacity,1))}.active\:bg-zinc-300:active{--tw-bg-opacity:1;background-color:rgb(212 212 216/var(--tw-bg-opacity,1))}.active\:bg-zinc-50:active{--tw-bg-opacity:1;background-color:rgb(250 250 250/var(--tw-bg-opacity,1))}.disabled\:opacity-40:disabled{opacity:.4}.disabled\:opacity-45:disabled{opacity:.45}.disabled\:opacity-55:disabled{opacity:.55}.disabled\:shadow-none:disabled{--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.dark\:divide-zinc-800:is(.dark *)>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(39 39 42/var(--tw-divide-opacity,1))}.dark\:border-zinc-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(39 39 42/var(--tw-border-opacity,1))}.dark\:bg-amber-400\/10:is(.dark *){background-color:rgba(251,191,36,.1)}.dark\:bg-amber-400\/15:is(.dark *){background-color:rgba(251,191,36,.15)}.dark\:bg-amber-500\/10:is(.dark *){background-color:rgba(245,158,11,.1)}.dark\:bg-blue-400\/15:is(.dark *){background-color:rgba(96,165,250,.15)}.dark\:bg-emerald-400\/15:is(.dark *){background-color:rgba(52,211,153,.15)}.dark\:bg-emerald-500\/10:is(.dark *){background-color:rgba(16,185,129,.1)}.dark\:bg-emerald-500\/20:is(.dark *){background-color:rgba(16,185,129,.2)}.dark\:bg-red-400\/15:is(.dark *){background-color:hsla(0,91%,71%,.15)}.dark\:bg-red-400\/20:is(.dark *){background-color:hsla(0,91%,71%,.2)}.dark\:bg-red-500\/10:is(.dark *){background-color:rgba(239,68,68,.1)}.dark\:bg-rose-400\/15:is(.dark *){background-color:rgba(251,113,133,.15)}.dark\:bg-rose-500\/10:is(.dark *){background-color:rgba(244,63,94,.1)}.dark\:bg-sky-400\/15:is(.dark *){background-color:rgba(56,189,248,.15)}.dark\:bg-violet-400\/15:is(.dark *){background-color:rgba(167,139,250,.15)}.dark\:bg-white:is(.dark *){--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.dark\:bg-zinc-600:is(.dark *){--tw-bg-opacity:1;background-color:rgb(82 82 91/var(--tw-bg-opacity,1))}.dark\:bg-zinc-700:is(.dark *){--tw-bg-opacity:1;background-color:rgb(63 63 70/var(--tw-bg-opacity,1))}.dark\:bg-zinc-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.dark\:bg-zinc-800\/70:is(.dark *){background-color:rgba(39,39,42,.7)}.dark\:bg-zinc-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.dark\:bg-zinc-900\/90:is(.dark *){background-color:rgba(24,24,27,.9)}.dark\:bg-zinc-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(9 9 11/var(--tw-bg-opacity,1))}.dark\:bg-zinc-950\/85:is(.dark *){background-color:rgba(9,9,11,.85)}.dark\:bg-zinc-950\/90:is(.dark *){background-color:rgba(9,9,11,.9)}.dark\:stroke-zinc-800:is(.dark *){stroke:#27272a}.dark\:text-amber-200:is(.dark *){--tw-text-opacity:1;color:rgb(253 230 138/var(--tw-text-opacity,1))}.dark\:text-amber-300:is(.dark *){--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.dark\:text-amber-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}.dark\:text-blue-300:is(.dark *){--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.dark\:text-emerald-200:is(.dark *){--tw-text-opacity:1;color:rgb(167 243 208/var(--tw-text-opacity,1))}.dark\:text-emerald-300:is(.dark *){--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.dark\:text-emerald-400:is(.dark *){--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.dark\:text-red-300:is(.dark *){--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.dark\:text-red-400:is(.dark *){--tw-text-opacity:1;color:rgb(248 113 113/var(--tw-text-opacity,1))}.dark\:text-rose-200:is(.dark *){--tw-text-opacity:1;color:rgb(254 205 211/var(--tw-text-opacity,1))}.dark\:text-rose-300:is(.dark *){--tw-text-opacity:1;color:rgb(253 164 175/var(--tw-text-opacity,1))}.dark\:text-rose-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 113 133/var(--tw-text-opacity,1))}.dark\:text-sky-300:is(.dark *){--tw-text-opacity:1;color:rgb(125 211 252/var(--tw-text-opacity,1))}.dark\:text-violet-300:is(.dark *){--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.dark\:text-zinc-100:is(.dark *){--tw-text-opacity:1;color:rgb(244 244 245/var(--tw-text-opacity,1))}.dark\:text-zinc-200:is(.dark *){--tw-text-opacity:1;color:rgb(228 228 231/var(--tw-text-opacity,1))}.dark\:text-zinc-300:is(.dark *){--tw-text-opacity:1;color:rgb(212 212 216/var(--tw-text-opacity,1))}.dark\:text-zinc-400:is(.dark *){--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.dark\:text-zinc-50:is(.dark *){--tw-text-opacity:1;color:rgb(250 250 250/var(--tw-text-opacity,1))}.dark\:text-zinc-500:is(.dark *){--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity,1))}.dark\:text-zinc-600:is(.dark *){--tw-text-opacity:1;color:rgb(82 82 91/var(--tw-text-opacity,1))}.dark\:text-zinc-900:is(.dark *){--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.dark\:ring-amber-400\/20:is(.dark *){--tw-ring-color:rgba(251,191,36,.2)}.dark\:ring-amber-500\/20:is(.dark *){--tw-ring-color:rgba(245,158,11,.2)}.dark\:ring-emerald-500\/20:is(.dark *){--tw-ring-color:rgba(16,185,129,.2)}.dark\:ring-emerald-500\/70:is(.dark *){--tw-ring-color:rgba(16,185,129,.7)}.dark\:ring-red-400:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(248 113 113/var(--tw-ring-opacity,1))}.dark\:ring-rose-500\/20:is(.dark *){--tw-ring-color:rgba(244,63,94,.2)}.dark\:ring-white\/10:is(.dark *){--tw-ring-color:hsla(0,0%,100%,.1)}.dark\:ring-white\/5:is(.dark *){--tw-ring-color:hsla(0,0%,100%,.05)}.dark\:ring-zinc-800:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(39 39 42/var(--tw-ring-opacity,1))}.dark\:active\:bg-zinc-700:active:is(.dark *){--tw-bg-opacity:1;background-color:rgb(63 63 70/var(--tw-bg-opacity,1))}.dark\:active\:bg-zinc-800\/60:active:is(.dark *){background-color:rgba(39,39,42,.6)}</style>
+<style>
+  html { -webkit-tap-highlight-color: transparent; background: #f4f4f5; }
+  html.dark { background: #09090b; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overscroll-behavior-y: none; }
+  button { touch-action: manipulation; }
+  .tabular { font-variant-numeric: tabular-nums; }
+  .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pb-safe-3 { padding-bottom: calc(env(safe-area-inset-bottom) + .75rem); }
+  .pb-tabbar { padding-bottom: calc(6rem + env(safe-area-inset-bottom)); }
+  .fade-in { animation: fadeIn .35s cubic-bezier(.32,.72,0,1) both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pop { animation: pop .32s cubic-bezier(.32,.72,0,1) both; }
+  @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+  #tabInd { transition: transform .42s cubic-bezier(.32,.72,0,1); }
+  .sheet-panel { transition: transform .42s cubic-bezier(.32,.72,0,1); will-change: transform; }
+  .slide-up { transition: transform .42s cubic-bezier(.32,.72,0,1), opacity .3s ease; }
+  .bar-anim { transition: width .6s cubic-bezier(.32,.72,0,1); }
+  .ring-anim { transition: stroke-dashoffset .9s cubic-bezier(.32,.72,0,1); }
+</style>
+</head>
+<body class="bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 antialiased">
+
+<div id="app" class="min-h-[100dvh] max-w-md mx-auto flex flex-col">
+  <header class="sticky top-0 z-30 pt-safe bg-zinc-100/85 dark:bg-zinc-950/85 backdrop-blur-xl">
+    <div class="flex items-center justify-between gap-3 px-5 h-16">
+      <div class="min-w-0">
+        <p class="text-[11px] font-bold uppercase tracking-[.14em] text-red-600 dark:text-red-400">Sicherer Einsatzfahrer</p>
+        <h1 id="hdrTitle" class="text-2xl font-bold tracking-tight leading-tight">Lernen</h1>
+      </div>
+      <button data-act="settings" class="shrink-0 w-11 h-11 rounded-full grid place-items-center bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-black/5 dark:ring-white/10 text-zinc-600 dark:text-zinc-300 active:scale-95 transition" aria-label="Einstellungen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+  </header>
+  <main id="view" class="flex-1 px-3 pt-1 pb-tabbar space-y-3"></main>
+</div>
+
+<!-- Untere Navigationsleiste -->
+<nav id="tabbar" class="fixed bottom-0 inset-x-0 z-40 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl border-t border-zinc-200/70 dark:border-zinc-800 pb-safe" role="tablist">
+  <div class="max-w-md mx-auto relative grid grid-cols-3">
+    <span id="tabInd" class="absolute inset-y-0 left-0 w-1/3 pointer-events-none" aria-hidden="true"><span class="block mx-auto mt-2 w-16 h-8 rounded-full bg-red-100 dark:bg-red-400/20"></span></span>
+    <button data-tab="lernen" role="tab" class="relative flex flex-col items-center gap-1 pt-2 pb-2">
+      <span class="h-8 grid place-items-center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>
+      <span class="text-xs font-semibold">Lernen</span>
+    </button>
+    <button data-tab="pruefung" role="tab" class="relative flex flex-col items-center gap-1 pt-2 pb-2">
+      <span class="h-8 grid place-items-center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span>
+      <span class="text-xs font-semibold">Prüfung</span>
+    </button>
+    <button data-tab="fragen" role="tab" class="relative flex flex-col items-center gap-1 pt-2 pb-2">
+      <span class="h-8 grid place-items-center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg></span>
+      <span class="text-xs font-semibold">Fragen</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Quiz (Lernrunde / Prüfung) – Vollbild -->
+<div id="quiz" class="fixed inset-0 z-50 bg-zinc-100 dark:bg-zinc-950 hidden"></div>
+
+<!-- Bottom-Sheet -->
+<div id="sheet" class="fixed inset-0 z-[60] hidden">
+  <div id="sheetBg" data-act="sheetClose" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300"></div>
+  <div id="sheetPanel" class="sheet-panel absolute bottom-0 inset-x-0 max-w-md mx-auto bg-zinc-50 dark:bg-zinc-900 rounded-t-[1.75rem] shadow-2xl translate-y-full max-h-[88dvh] flex flex-col">
+    <div class="pt-2.5 pb-1 grid place-items-center"><span class="w-10 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span></div>
+    <div id="sheetBody" class="overflow-y-auto px-4 pb-safe-3"></div>
+  </div>
+</div>
+
+<!-- Rückfrage-Dialog -->
+<div id="dlg" class="fixed inset-0 z-[70] hidden">
+  <div class="absolute inset-0 bg-black/45" data-act="dlgCancel"></div>
+  <div class="absolute inset-x-6 top-1/2 -translate-y-1/2 max-w-sm mx-auto">
+    <div id="dlgBox" class="pop rounded-[1.75rem] bg-white dark:bg-zinc-900 p-6 shadow-2xl"></div>
+  </div>
+</div>
+
+<!-- Snackbar -->
+<div id="toast" class="fixed inset-x-0 z-[80] flex justify-center pointer-events-none px-4" style="bottom: calc(6rem + env(safe-area-inset-bottom));"></div>
+
+<script src="fragen.js"></script>
+<script>
+(function () {
+'use strict';
+
+const APP_BUILD = 1;                     // zusammen mit CACHE = 'sef-lernapp-v1' in sw.js erhöhen
+const APP_VERSION = `${APP_BUILD} · 24.11.2026`;
+
+/* =====================================================================
+   Hilfsfunktionen
+   ===================================================================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const LS = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f'];
+const fmtDate = t => new Date(t).toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const fmtTime = t => new Date(t).toLocaleTimeString('de-AT', { hour: '2-digit', minute: '2-digit' });
+const fmtDur = ms => { const s = Math.max(1, Math.round(ms / 1000)), m = Math.floor(s / 60); return m ? `${m} min ${String(s % 60).padStart(2, '0')} s` : `${s} s`; };
+
+/* Icons (Lucide, MIT) */
+const ICON = {
+  scale: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
+  siren: '<path d="M7 18v-6a5 5 0 1 1 10 0v6"/><path d="M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z"/><path d="M21 12h1"/><path d="M18.5 4.5 18 5"/><path d="M2 12h1"/><path d="M12 2v1"/><path d="m4.929 4.929.707.707"/><path d="M12 12v6"/>',
+  gauge: '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
+  alert: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  chevron: '<path d="m9 18 6-6-6-6"/>',
+  left: '<path d="m15 18-6-6 6-6"/>',
+  bookmark: '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  redo: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+  shuffle: '<path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="M2 6h1.4c1.3 0 2.5.6 3.3 1.7l.6.8"/><path d="M22 18h-6.1c-1.3 0-2.5-.6-3.3-1.7l-.6-.8"/>',
+  play: '<path d="M6 3l14 9-14 9V3z"/>',
+  list: '<path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/>',
+  info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  clipboard: '<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',
+  trophy: '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  trash: '<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
+  eye: '<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/>'
+};
+const ico = (name, cls = 'w-5 h-5', sw = 2) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" class="${cls}" aria-hidden="true">${ICON[name]}</svg>`;
+const icoFill = (name, cls = 'w-5 h-5') => `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls}" aria-hidden="true">${ICON[name]}</svg>`;
+
+/* =====================================================================
+   Daten
+   ===================================================================== */
+const KATS = SEF_KATEGORIEN;
+const FRAGEN = SEF_FRAGEN;
+const BY_ID = Object.fromEntries(FRAGEN.map(q => [q.id, q]));
+const KAT = Object.fromEntries(KATS.map(k => [k.id, k]));
+const NUM = id => id.replace(/^[a-z]+/, '');                     // Nummer der Frage im Kurs
+const UNBESTAETIGT = FRAGEN.filter(q => q.v === 0);
+
+/* Farben je Kategorie (vollständige Klassen – sonst findet Tailwind sie nicht) */
+const KSTYLE = {
+  avr: { icon: 'scale',  bg: 'bg-sky-100 text-sky-700 dark:bg-sky-400/15 dark:text-sky-300',             bar: 'bg-sky-500',     chip: 'bg-sky-100 text-sky-800 dark:bg-sky-400/15 dark:text-sky-300' },
+  svr: { icon: 'siren',  bg: 'bg-blue-100 text-blue-700 dark:bg-blue-400/15 dark:text-blue-300',         bar: 'bg-blue-500',    chip: 'bg-blue-100 text-blue-800 dark:bg-blue-400/15 dark:text-blue-300' },
+  fp:  { icon: 'gauge',  bg: 'bg-amber-100 text-amber-700 dark:bg-amber-400/15 dark:text-amber-300',     bar: 'bg-amber-500',   chip: 'bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-300' },
+  gp:  { icon: 'alert',  bg: 'bg-violet-100 text-violet-700 dark:bg-violet-400/15 dark:text-violet-300', bar: 'bg-violet-500',  chip: 'bg-violet-100 text-violet-800 dark:bg-violet-400/15 dark:text-violet-300' },
+  fk:  { icon: 'wrench', bg: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-400/15 dark:text-emerald-300', bar: 'bg-emerald-500', chip: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-300' }
+};
+
+/* Bausteine */
+const PANEL = 'rounded-[1.75rem] bg-white dark:bg-zinc-900 shadow-sm ring-1 ring-black/5 dark:ring-white/5';
+const PRESS = 'active:scale-[.98] transition-transform';
+const BTN_PRIMARY = 'w-full h-12 rounded-full bg-red-600 text-white font-semibold shadow-sm shadow-red-900/20 active:bg-red-700 disabled:opacity-40 disabled:shadow-none transition';
+const BTN_SECOND = 'w-full h-12 rounded-full bg-zinc-200/80 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100 font-semibold active:bg-zinc-300 dark:active:bg-zinc-700 disabled:opacity-40 transition';
+const sectionTitle = (t, extra = '') => `<div class="flex items-center justify-between px-2 pt-3 pb-0.5"><h2 class="text-[13px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">${t}</h2>${extra}</div>`;
+
+/* =====================================================================
+   Zustand
+   ===================================================================== */
+const SICHER = 2;   // so oft hintereinander richtig → „sicher“
+const state = {
+  tab: LS.get('sef_tab', 'lernen'),
+  stats: LS.get('sef_stats_v1', {}),     // id → { n: gesehen, ok: richtig, s: Serie, w: falsch, last: 1|0, t: Zeit }
+  marks: LS.get('sef_marks_v1', []),     // markierte Fragen
+  exams: LS.get('sef_exams_v1', []),     // letzte Prüfungen
+  set: Object.assign({ shuffle: true, round: 10, examN: 30, reveal: true }, LS.get('sef_settings_v1', {})),
+  filter: 'alle',                        // Fragen-Tab: Kategorie / markiert / unbestätigt
+  search: '',
+  revealed: new Set()
+};
+if (!['lernen', 'pruefung', 'fragen'].includes(state.tab)) state.tab = 'lernen';
+const saveSet = () => LS.set('sef_settings_v1', state.set);
+
+function status(id) {
+  const s = state.stats[id];
+  if (!s || !s.n) return 'neu';
+  return s.s >= SICHER ? 'sicher' : 'ueben';
+}
+const isWrong = id => { const s = state.stats[id]; return !!(s && s.last === 0); };
+const isMarked = id => state.marks.includes(id);
+function counts(list) {
+  const c = { neu: 0, ueben: 0, sicher: 0, falsch: 0, total: list.length };
+  list.forEach(q => { c[status(q.id)]++; if (isWrong(q.id)) c.falsch++; });
+  return c;
+}
+function record(id, ok) {
+  const s = state.stats[id] || { n: 0, ok: 0, s: 0, w: 0 };
+  s.n++;
+  if (ok) { s.ok++; s.s++; } else { s.w++; s.s = 0; }
+  s.last = ok ? 1 : 0; s.t = Date.now();
+  state.stats[id] = s;
+  LS.set('sef_stats_v1', state.stats);
+}
+function toggleMark(id) {
+  const i = state.marks.indexOf(id);
+  if (i >= 0) state.marks.splice(i, 1); else state.marks.push(id);
+  LS.set('sef_marks_v1', state.marks);
+  return i < 0;
+}
+
+/* Bewertung: richtig nur, wenn genau alle richtigen Antworten gewählt sind */
+function grade(q, sel) {
+  const R = new Set(q.r); let hit = 0, wrong = 0;
+  sel.forEach(i => R.has(i) ? hit++ : wrong++);
+  if (hit === R.size && wrong === 0) return 'ok';
+  return hit > 0 ? 'part' : 'wrong';
+}
+
+/* =====================================================================
+   Lernrunden & Prüfung zusammenstellen
+   ===================================================================== */
+function prio(q) {
+  const s = state.stats[q.id];
+  if (!s || !s.n) return 2;            // neu
+  if (s.last === 0) return 0;          // zuletzt falsch
+  if (s.s < SICHER) return 1;          // noch üben
+  return 3;                            // sicher → nur zur Wiederholung
+}
+function pickLearn(list, n) {
+  const arr = shuffle(list.slice()).sort((a, b) => prio(a) - prio(b) || ((state.stats[a.id] || {}).t || 0) - ((state.stats[b.id] || {}).t || 0));
+  return shuffle(arr.slice(0, n));
+}
+function pickExam(n) {
+  if (n >= FRAGEN.length) return shuffle(FRAGEN.map(q => q.id));
+  const total = FRAGEN.length;
+  /* anteilig nach Kategoriegröße, aber aus jeder Kategorie mindestens 1 Frage */
+  const parts = KATS.map(k => { const list = FRAGEN.filter(q => q.k === k.id); const exact = n * list.length / total; return { list, take: Math.max(1, Math.floor(exact)), rest: exact % 1 }; });
+  let diff = n - parts.reduce((s, p) => s + p.take, 0);
+  parts.slice().sort((a, b) => b.rest - a.rest).forEach(p => { if (diff > 0 && p.take < p.list.length) { p.take++; diff--; } });
+  while (diff < 0) { const big = parts.reduce((a, b) => (b.take > a.take ? b : a)); big.take--; diff++; }
+  return shuffle(parts.flatMap(p => shuffle(p.list.slice()).slice(0, p.take).map(q => q.id)));
+}
+
+let session = null;
+function newSession(mode, title, ids, meta = {}) {
+  const order = {};
+  ids.forEach(id => { const idx = BY_ID[id].a.map((_, i) => i); order[id] = state.set.shuffle ? shuffle(idx) : idx; });
+  return { mode, title, ids, i: 0, order, sel: {}, checked: {}, res: {}, start: Date.now(), done: false, meta };
+}
+function startSession(s) {
+  session = s;
+  if (stack[stack.length - 1] === 'sheet') {        // Sheet wird durch das Quiz ersetzt (gleicher Verlaufseintrag)
+    stack[stack.length - 1] = 'quiz'; hideSheet();
+  } else pushLayer('quiz');
+  showQuiz();
+}
+function startLearn(list, title, n) {
+  if (!list.length) { toast('Keine passenden Fragen vorhanden.'); return; }
+  const ids = pickLearn(list, Math.min(n || state.set.round, list.length)).map(q => q.id);
+  startSession(newSession('learn', title, ids, { list: list.map(q => q.id), n }));
+}
+function startInOrder(list, title) {
+  startSession(newSession('learn', title, list.map(q => q.id), { inOrder: true }));
+}
+function startExam() {
+  const n = state.set.examN === 'alle' ? FRAGEN.length : state.set.examN;
+  startSession(newSession('exam', 'Prüfungssimulation', pickExam(n)));
+}
+
+/* =====================================================================
+   Navigation: Zurück-Taste / -Geste schließt Quiz, Sheets und Dialoge
+   ===================================================================== */
+const stack = [];
+let pendingPop = 0;
+function pushLayer(name) { stack.push(name); try { history.pushState({ sef: stack.length }, ''); } catch (e) {} }
+function popLayers(k = 1) { k = Math.min(k, stack.length); if (!k) return; pendingPop += k; history.go(-k); }
+window.addEventListener('popstate', () => {
+  const user = !pendingPop; let k = pendingPop || 1; pendingPop = 0;
+  if (user && stack[stack.length - 1] === 'quiz' && examRunning()) {
+    try { history.pushState({ sef: stack.length }, ''); } catch (e) {}
+    askAbortExam(); return;
+  }
+  while (k-- > 0 && stack.length) closeLayer(stack.pop());
+});
+function closeLayer(name) {
+  if (name === 'dlg') hideDlg();
+  else if (name === 'sheet') hideSheet();
+  else if (name === 'quiz') hideQuiz();
+}
+const examRunning = () => session && session.mode === 'exam' && !session.done && Object.keys(session.sel).some(id => session.sel[id].length);
+function askAbortExam() {
+  confirmDlg({ title: 'Prüfung abbrechen?', text: 'Deine bisherigen Antworten dieser Prüfung werden nicht gewertet.', ok: 'Abbrechen', cancel: 'Weitermachen', danger: true,
+    onOk: () => popLayers(2) });
+}
+
+/* =====================================================================
+   Tabs
+   ===================================================================== */
+const TAB_TITLE = { lernen: 'Lernen', pruefung: 'Prüfung', fragen: 'Fragenkatalog' };
+const TAB_IDX = { lernen: 0, pruefung: 1, fragen: 2 };
+function renderChrome() {
+  $('#hdrTitle').textContent = TAB_TITLE[state.tab];
+  document.querySelectorAll('#tabbar [data-tab]').forEach(btn => {
+    const on = btn.dataset.tab === state.tab;
+    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+    btn.className = `relative flex flex-col items-center gap-1 pt-2 pb-2 transition-colors duration-300 ${on ? 'text-red-700 dark:text-red-300' : 'text-zinc-500 dark:text-zinc-400'}`;
+  });
+  $('#tabInd').style.transform = `translateX(${TAB_IDX[state.tab] * 100}%)`;
+}
+function switchTab(t) {
+  if (t === state.tab) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  state.tab = t; LS.set('sef_tab', t);
+  window.scrollTo(0, 0);
+  render();
+}
+function render() {
+  renderChrome();
+  const v = $('#view');
+  if (state.tab === 'lernen') v.innerHTML = renderLernen();
+  else if (state.tab === 'pruefung') v.innerHTML = renderPruefung();
+  else {
+    v.innerHTML = renderFragenShell(); renderFragenList();
+    const chip = v.querySelector(`[data-act="filter"][data-f="${state.filter}"]`);
+    if (chip && chip.parentElement) chip.parentElement.scrollLeft = Math.max(0, chip.offsetLeft - 24);
+  }
+  v.classList.remove('fade-in'); void v.offsetWidth; v.classList.add('fade-in');
+}
+
+/* ---------- Gestapelter Fortschrittsbalken ---------- */
+function stackBar(c, light) {
+  const w = x => `${c.total ? x / c.total * 100 : 0}%`;
+  if (light) return `<div class="flex h-2.5 rounded-full overflow-hidden bg-white/20">
+      <span class="bar-anim h-full bg-white" style="width:${w(c.sicher)}"></span><span class="bar-anim h-full bg-white/50" style="width:${w(c.ueben)}"></span></div>`;
+  return `<div class="flex h-2 rounded-full overflow-hidden bg-zinc-200/80 dark:bg-zinc-800">
+      <span class="bar-anim h-full bg-emerald-500" style="width:${w(c.sicher)}"></span><span class="bar-anim h-full bg-amber-400" style="width:${w(c.ueben)}"></span></div>`;
+}
+
+/* =====================================================================
+   Tab „Lernen“
+   ===================================================================== */
+function renderLernen() {
+  const c = counts(FRAGEN), p = pct(c.sicher, c.total);
+  const marked = state.marks.length;
+  const allDone = c.sicher === c.total;
+  const hero = `<section class="rounded-[2rem] p-5 text-white bg-gradient-to-br from-red-600 via-red-700 to-red-900 shadow-lg shadow-red-900/20">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-sm font-medium text-white/80">Dein Lernstand</p>
+        <p class="mt-1 text-5xl font-bold tracking-tight tabular">${p}<span class="text-2xl font-semibold"> %</span></p>
+      </div>
+      <p class="pt-1 text-right text-sm leading-snug text-white/85"><b class="text-white tabular">${c.sicher}</b> von <span class="tabular">${c.total}</span> Fragen<br>sicher beantwortet</p>
+    </div>
+    <div class="mt-4">${stackBar(c, true)}</div>
+    <div class="mt-2.5 flex gap-4 text-xs text-white/85">
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-white"></span>sicher <b class="tabular">${c.sicher}</b></span>
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-white/50"></span>üben <b class="tabular">${c.ueben}</b></span>
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-white/20 ring-1 ring-white/40"></span>neu <b class="tabular">${c.neu}</b></span>
+    </div>
+    <button data-act="learnAll" class="mt-5 w-full h-12 rounded-full bg-white text-red-700 font-bold flex items-center justify-center gap-2 shadow-sm ${PRESS}">
+      ${icoFill('play', 'w-4 h-4')} ${c.neu === c.total ? 'Jetzt starten' : allDone ? 'Wiederholen' : 'Weiterlernen'}
+    </button>
+    <p class="mt-2 text-center text-xs text-white/75">Runde mit ${Math.min(state.set.round, c.total)} Fragen · ${allDone ? 'älteste zuerst' : 'Falsches und Neues zuerst'}</p>
+  </section>`;
+
+  const quick = `<div class="grid grid-cols-2 gap-3">
+    ${quickCard('learnWrong', 'redo', 'Falsche wiederholen', c.falsch, c.falsch ? `${c.falsch} ${c.falsch === 1 ? 'Frage' : 'Fragen'}` : 'keine offen', 'bg-rose-100 text-rose-700 dark:bg-rose-400/15 dark:text-rose-300')}
+    ${quickCard('learnMarked', 'bookmark', 'Markierte Fragen', marked, marked ? `${marked} ${marked === 1 ? 'Frage' : 'Fragen'}` : 'noch keine', 'bg-amber-100 text-amber-700 dark:bg-amber-400/15 dark:text-amber-300')}
+  </div>`;
+
+  const cats = `<section class="${PANEL} overflow-hidden divide-y divide-zinc-100 dark:divide-zinc-800">
+    ${KATS.map(k => {
+      const list = FRAGEN.filter(q => q.k === k.id), kc = counts(list), st = KSTYLE[k.id];
+      return `<button data-act="cat" data-k="${k.id}" class="w-full flex items-center gap-3.5 px-4 py-3.5 text-left active:bg-zinc-50 dark:active:bg-zinc-800/60 transition-colors">
+        <span class="shrink-0 w-11 h-11 rounded-2xl grid place-items-center ${st.bg}">${ico(st.icon)}</span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-semibold leading-tight">${esc(k.name)}</span>
+          <span class="block mt-0.5 text-xs text-zinc-500 dark:text-zinc-400 tabular">${kc.total} Fragen · ${kc.sicher} sicher${kc.falsch ? ` · <span class="text-rose-600 dark:text-rose-400">${kc.falsch} falsch</span>` : ''}</span>
+          <span class="block mt-2">${stackBar(kc)}</span>
+        </span>
+        <span class="shrink-0 text-zinc-300 dark:text-zinc-600">${ico('chevron', 'w-5 h-5')}</span>
+      </button>`;
+    }).join('')}
+  </section>`;
+
+  const note = UNBESTAETIGT.length ? `<button data-act="unconfirmedInfo" class="w-full flex items-start gap-3 rounded-[1.5rem] p-4 text-left bg-amber-50 ring-1 ring-amber-200 text-amber-900 dark:bg-amber-400/10 dark:ring-amber-400/20 dark:text-amber-200 ${PRESS}">
+      <span class="shrink-0 mt-0.5">${ico('info', 'w-5 h-5')}</span>
+      <span class="text-sm leading-snug"><b>${UNBESTAETIGT.length} Lösungen sind Vorschläge.</b> Diese Fragen waren in deinen Screenshots noch unbeantwortet. Sie sind gelb markiert. Tippen für Details.</span>
+    </button>` : '';
+
+  return `${hero}${quick}${sectionTitle('Kategorien')}${cats}${note}`;
+}
+function quickCard(act, icon, title, n, sub, iconCls) {
+  return `<button data-act="${act}" ${n ? '' : 'disabled'} class="${PANEL} p-4 text-left flex flex-col gap-3 disabled:opacity-55 ${PRESS}">
+    <span class="w-10 h-10 rounded-2xl grid place-items-center ${iconCls}">${ico(icon)}</span>
+    <span><span class="block font-semibold leading-tight">${title}</span><span class="block mt-0.5 text-xs text-zinc-500 dark:text-zinc-400 tabular">${sub}</span></span>
+  </button>`;
+}
+
+/* Kategorie-Sheet */
+function openCatSheet(kid) {
+  const k = KAT[kid], list = FRAGEN.filter(q => q.k === kid), c = counts(list), st = KSTYLE[kid];
+  const open = list.filter(q => status(q.id) !== 'sicher').length;
+  const unconf = list.filter(q => q.v === 0).length;
+  openSheet(`<div class="pt-2 pb-1 flex items-center gap-3.5">
+      <span class="shrink-0 w-12 h-12 rounded-2xl grid place-items-center ${st.bg}">${ico(st.icon, 'w-6 h-6')}</span>
+      <div class="min-w-0"><p class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Kategorie</p><h3 class="text-lg font-bold leading-tight">${esc(k.name)}</h3></div>
+    </div>
+    <div class="mt-4 grid grid-cols-4 gap-2 text-center">
+      ${miniStat(c.total, 'Fragen')}${miniStat(c.sicher, 'sicher', 'text-emerald-600 dark:text-emerald-400')}${miniStat(c.ueben, 'üben', 'text-amber-600 dark:text-amber-400')}${miniStat(c.neu, 'neu')}
+    </div>
+    ${unconf ? `<p class="mt-3 text-xs text-amber-700 dark:text-amber-300">${unconf === c.total ? 'Alle' : unconf} ${unconf === 1 ? 'Lösung ist ein Vorschlag' : 'Lösungen sind Vorschläge'} (im Kurs noch nicht bestätigt).</p>` : ''}
+    <div class="mt-4 space-y-2">
+      ${sheetAction('catLearn', 'play', 'Lernen', open ? `${Math.min(state.set.round, open)} Fragen · Falsches und Neues zuerst` : `Alles sicher – ${Math.min(state.set.round, c.total)} Fragen wiederholen`, kid)}
+      ${sheetAction('catOrder', 'list', 'Alle Fragen der Reihe nach', `${c.total} Fragen in der Reihenfolge des Kurses`, kid)}
+      ${sheetAction('catWrong', 'redo', 'Falsche wiederholen', c.falsch ? `${c.falsch} ${c.falsch === 1 ? 'Frage' : 'Fragen'}` : 'keine offen', kid, !c.falsch)}
+      ${sheetAction('catBrowse', 'eye', 'Fragen mit Lösungen ansehen', 'im Fragenkatalog', kid)}
+    </div>`);
+}
+const miniStat = (n, label, cls = '') => `<div class="rounded-2xl bg-white dark:bg-zinc-800/70 ring-1 ring-black/5 dark:ring-white/5 py-2.5"><p class="text-xl font-bold tabular ${cls}">${n}</p><p class="text-[11px] text-zinc-500 dark:text-zinc-400">${label}</p></div>`;
+const sheetAction = (act, icon, title, sub, k, disabled) => `<button data-act="${act}" data-k="${k}" ${disabled ? 'disabled' : ''} class="w-full flex items-center gap-3.5 rounded-2xl bg-white dark:bg-zinc-800/70 ring-1 ring-black/5 dark:ring-white/5 px-4 py-3.5 text-left disabled:opacity-45 ${PRESS}">
+    <span class="shrink-0 w-10 h-10 rounded-full grid place-items-center bg-red-50 text-red-600 dark:bg-red-400/15 dark:text-red-300">${icon === 'play' ? icoFill('play', 'w-4 h-4') : ico(icon)}</span>
+    <span class="flex-1 min-w-0"><span class="block font-semibold leading-tight">${title}</span><span class="block mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">${sub}</span></span>
+    <span class="shrink-0 text-zinc-300 dark:text-zinc-600">${ico('chevron')}</span>
+  </button>`;
+
+/* =====================================================================
+   Tab „Prüfung“
+   ===================================================================== */
+const EXAM_OPTS = [20, 30, 50, 'alle'];
+function renderPruefung() {
+  const n = state.set.examN;
+  const card = `<section class="${PANEL} p-5">
+    <div class="flex items-center gap-3.5">
+      <span class="shrink-0 w-12 h-12 rounded-2xl grid place-items-center bg-red-50 text-red-600 dark:bg-red-400/15 dark:text-red-300">${ico('clipboard', 'w-6 h-6')}</span>
+      <div><h2 class="text-lg font-bold leading-tight">Prüfungssimulation</h2><p class="text-sm text-zinc-500 dark:text-zinc-400">Auflösung erst am Ende</p></div>
+    </div>
+    <p class="mt-4 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300">Zufällige Fragen aus allen ${KATS.length} Kategorien, anteilig wie im Kurs. Du kannst vor- und zurückblättern und Antworten ändern.</p>
+    <p class="mt-5 mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Anzahl Fragen</p>
+    <div class="flex p-1 gap-1 rounded-full bg-zinc-100 dark:bg-zinc-800">
+      ${EXAM_OPTS.map(o => `<button data-act="examN" data-n="${o}" class="flex-1 h-10 rounded-full text-sm font-semibold tabular transition ${o === n ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-600 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}">${o === 'alle' ? `Alle ${FRAGEN.length}` : o}</button>`).join('')}
+    </div>
+    <button data-act="examStart" class="mt-5 ${BTN_PRIMARY} flex items-center justify-center gap-2">${icoFill('play', 'w-4 h-4')} Prüfung starten</button>
+    <p class="mt-3 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">Eine Frage zählt nur als richtig, wenn alle richtigen und keine falschen Antworten gewählt sind.</p>
+  </section>`;
+
+  const ex = state.exams;
+  const best = ex.length ? Math.max(...ex.map(e => pct(e.ok, e.n))) : null;
+  const hist = ex.length ? `<section class="${PANEL} overflow-hidden divide-y divide-zinc-100 dark:divide-zinc-800">
+      ${ex.slice(0, 10).map((e, i) => {
+        const p = pct(e.ok, e.n);
+        const col = p >= 80 ? 'text-emerald-600 dark:text-emerald-400' : p >= 60 ? 'text-amber-600 dark:text-amber-400' : 'text-rose-600 dark:text-rose-400';
+        return `<button data-act="examShow" data-i="${i}" class="w-full flex items-center gap-3 px-4 py-3 text-left active:bg-zinc-50 dark:active:bg-zinc-800/60">
+          <span class="w-14 text-2xl font-bold tabular ${col}">${p}<span class="text-sm">%</span></span>
+          <span class="flex-1 min-w-0"><span class="block text-sm font-semibold tabular">${e.ok} von ${e.n} richtig</span>
+          <span class="block text-xs text-zinc-500 dark:text-zinc-400 tabular">${fmtDate(e.t)}, ${fmtTime(e.t)} · ${fmtDur(e.d)}</span></span>
+          <span class="shrink-0 text-zinc-300 dark:text-zinc-600">${ico('chevron')}</span>
+        </button>`;
+      }).join('')}
+    </section>` : `<section class="${PANEL} p-6 text-center text-sm text-zinc-500 dark:text-zinc-400">Noch keine Prüfung gemacht.</section>`;
+
+  return `${card}${sectionTitle('Letzte Prüfungen', best !== null ? `<span class="flex items-center gap-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400">${ico('trophy', 'w-4 h-4')} Bestwert ${best} %</span>` : '')}${hist}`;
+}
+
+/* =====================================================================
+   Tab „Fragen“ (Katalog mit Lösungen)
+   ===================================================================== */
+function filterList() {
+  const f = state.filter, s = state.search.trim().toLowerCase();
+  let list = FRAGEN;
+  if (KAT[f]) list = list.filter(q => q.k === f);
+  else if (f === 'markiert') list = list.filter(q => isMarked(q.id));
+  else if (f === 'falsch') list = list.filter(q => isWrong(q.id));
+  else if (f === 'unbestaetigt') list = list.filter(q => q.v === 0);
+  if (s) list = list.filter(q => (q.f + ' ' + q.a.join(' ')).toLowerCase().includes(s));
+  return list;
+}
+function renderFragenShell() {
+  const chips = [['alle', 'Alle', FRAGEN.length], ...KATS.map(k => [k.id, k.kurz, FRAGEN.filter(q => q.k === k.id).length]),
+    ['falsch', 'Falsch', FRAGEN.filter(q => isWrong(q.id)).length], ['markiert', 'Markiert', state.marks.length], ['unbestaetigt', 'Unbestätigt', UNBESTAETIGT.length]];
+  return `<div class="sticky z-20 -mx-3 px-3 pb-2 bg-zinc-100/85 dark:bg-zinc-950/85 backdrop-blur-xl" style="top: calc(env(safe-area-inset-top) + 4rem);">
+      <label class="flex items-center gap-2 h-11 px-4 rounded-full bg-white dark:bg-zinc-900 ring-1 ring-black/5 dark:ring-white/10 shadow-sm">
+        <span class="text-zinc-400">${ico('search', 'w-[18px] h-[18px]')}</span>
+        <input id="search" type="search" value="${esc(state.search)}" placeholder="Fragen durchsuchen …" autocomplete="off" class="flex-1 min-w-0 bg-transparent outline-none text-[15px] placeholder:text-zinc-400">
+      </label>
+      <div data-scroll class="mt-2 -mx-3 px-3 flex gap-2 overflow-x-auto no-scrollbar">
+        ${chips.map(([id, label, n]) => `<button data-act="filter" data-f="${id}" class="shrink-0 h-9 px-3.5 rounded-full text-sm font-semibold transition ${state.filter === id ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-900' : 'bg-white text-zinc-600 ring-1 ring-black/5 dark:bg-zinc-900 dark:text-zinc-300 dark:ring-white/10'}">${label} <span class="tabular opacity-60">${n}</span></button>`).join('')}
+      </div>
+    </div>
+    <div class="flex items-center justify-between px-2">
+      <p id="fragCount" class="text-sm text-zinc-500 dark:text-zinc-400 tabular"></p>
+      <button data-act="reveal" class="flex items-center gap-2 h-9 pl-3 pr-1.5 rounded-full text-sm font-semibold text-zinc-600 dark:text-zinc-300">
+        Lösungen
+        <span class="w-11 h-6 rounded-full p-0.5 transition-colors ${state.set.reveal ? 'bg-emerald-500' : 'bg-zinc-300 dark:bg-zinc-700'}"><span class="block w-5 h-5 rounded-full bg-white shadow transition-transform ${state.set.reveal ? 'translate-x-5' : ''}"></span></span>
+      </button>
+    </div>
+    <div id="fragList" class="space-y-3"></div>`;
+}
+function renderFragenList() {
+  const list = filterList();
+  $('#fragCount').textContent = `${list.length} ${list.length === 1 ? 'Frage' : 'Fragen'}`;
+  $('#fragList').innerHTML = list.length ? list.map(fragCard).join('') :
+    `<div class="${PANEL} p-6 text-center text-sm text-zinc-500 dark:text-zinc-400">${state.filter === 'markiert' && !state.search ? 'Noch keine Fragen markiert. Tippe beim Lernen auf das Lesezeichen.' : state.filter === 'falsch' && !state.search ? 'Keine falsch beantworteten Fragen offen.' : 'Keine Fragen gefunden.'}</div>`;
+}
+const STATUS_DOT = { neu: 'bg-zinc-300 dark:bg-zinc-600', ueben: 'bg-amber-400', sicher: 'bg-emerald-500' };
+const STATUS_TXT = { neu: 'neu', ueben: 'üben', sicher: 'sicher' };
+function fragCard(q) {
+  const st = status(q.id), k = KAT[q.k], show = state.set.reveal || state.revealed.has(q.id), s = state.stats[q.id];
+  return `<article class="${PANEL} p-4">
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full ${KSTYLE[q.k].chip}">${esc(k.kurz)} · ${NUM(q.id)}</span>
+      <span class="flex items-center gap-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400"><span class="w-2 h-2 rounded-full ${STATUS_DOT[st]}"></span>${STATUS_TXT[st]}${isWrong(q.id) ? ' · zuletzt falsch' : ''}</span>
+      <button data-act="markList" data-id="${q.id}" class="ml-auto -mr-1 w-9 h-9 grid place-items-center rounded-full ${isMarked(q.id) ? 'text-amber-500' : 'text-zinc-300 dark:text-zinc-600'}" aria-label="Frage markieren">${isMarked(q.id) ? icoFill('bookmark') : ico('bookmark')}</button>
+    </div>
+    <h3 class="mt-1 font-semibold leading-snug">${esc(q.f)}</h3>
+    <ul class="mt-3 space-y-1.5">
+      ${q.a.map((t, i) => {
+        const ok = q.r.includes(i);
+        if (!show) return `<li class="flex gap-2.5 text-[15px] leading-snug text-zinc-700 dark:text-zinc-300"><span class="shrink-0 w-5 text-zinc-400 font-semibold">${LETTERS[i]}.</span><span>${esc(t)}</span></li>`;
+        return `<li class="flex gap-2.5 text-[15px] leading-snug ${ok ? 'text-emerald-800 dark:text-emerald-300 font-medium' : 'text-zinc-400 dark:text-zinc-500'}">
+          <span class="shrink-0 mt-0.5 w-5 h-5 rounded-full grid place-items-center ${ok ? 'bg-emerald-500 text-white' : 'bg-zinc-100 dark:bg-zinc-800'}">${ok ? ico('check', 'w-3.5 h-3.5', 3) : ''}</span><span>${esc(t)}</span></li>`;
+      }).join('')}
+    </ul>
+    ${!show ? `<button data-act="revealOne" data-id="${q.id}" class="mt-3 h-9 px-4 rounded-full text-sm font-semibold bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-200">Lösung anzeigen</button>` : ''}
+    ${show && q.v === 0 ? unconfirmedBox(q, 'mt-3') : ''}
+    ${s && s.n ? `<p class="mt-3 text-xs text-zinc-400 dark:text-zinc-500 tabular">${s.n}× beantwortet · ${s.ok}× richtig</p>` : ''}
+  </article>`;
+}
+const unconfirmedBox = (q, cls = '') => `<div class="${cls} rounded-2xl p-3.5 bg-amber-50 ring-1 ring-amber-200 text-amber-900 dark:bg-amber-400/10 dark:ring-amber-400/20 dark:text-amber-200 text-sm leading-snug">
+    <p class="font-semibold">Lösungsvorschlag – im Kurs noch nicht bestätigt</p>${q.h ? `<p class="mt-1">${esc(q.h)}</p>` : ''}</div>`;
+
+/* =====================================================================
+   Quiz
+   ===================================================================== */
+function showQuiz() {
+  const el = $('#quiz');
+  el.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  renderQuiz();
+  el.firstElementChild && el.firstElementChild.classList.add('fade-in');
+}
+function hideQuiz() {
+  $('#quiz').classList.add('hidden'); $('#quiz').innerHTML = '';
+  document.body.style.overflow = '';
+  session = null;
+  render();
+  if (reloadPending) reloadNow();
+}
+function curQ() { return BY_ID[session.ids[session.i]]; }
+
+function renderQuiz() {
+  if (!session) return;
+  if (session.done) { renderSummary(); return; }
+  const q = curQ(), id = q.id, n = session.ids.length, exam = session.mode === 'exam';
+  const perm = session.order[id], sel = session.sel[id] || [], checked = !exam && !!session.checked[id];
+  const res = checked ? session.res[id] : null;
+  const answered = session.ids.filter(x => (session.sel[x] || []).length).length;
+  const progress = exam ? pct(answered, n) : pct(session.i + (checked ? 1 : 0), n);
+
+  const opts = perm.map((oi, pos) => {
+    const on = sel.includes(oi), ok = q.r.includes(oi);
+    let box, mark, markIn = LETTERS[pos], tail = '';
+    if (!checked) {
+      box = on ? 'bg-red-50 ring-2 ring-red-500 dark:bg-red-500/10 dark:ring-red-400' : 'bg-white ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800';
+      mark = on ? 'bg-red-600 text-white' : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400';
+      if (on && q.m) markIn = ico('check', 'w-4 h-4', 3);
+    } else if (ok && on) {
+      box = 'bg-emerald-50 ring-2 ring-emerald-500 dark:bg-emerald-500/10'; mark = 'bg-emerald-600 text-white'; markIn = ico('check', 'w-4 h-4', 3);
+      tail = '<span class="shrink-0 self-center text-xs font-bold text-emerald-700 dark:text-emerald-400">richtig</span>';
+    } else if (ok) {
+      box = 'bg-white ring-2 ring-emerald-400 dark:bg-zinc-900 dark:ring-emerald-500/70'; mark = 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300'; markIn = ico('check', 'w-4 h-4', 3);
+      tail = '<span class="shrink-0 self-center text-xs font-bold text-emerald-700 dark:text-emerald-400">fehlte</span>';
+    } else if (on) {
+      box = 'bg-rose-50 ring-2 ring-rose-500 dark:bg-rose-500/10'; mark = 'bg-rose-600 text-white'; markIn = ico('x', 'w-4 h-4', 3);
+      tail = '<span class="shrink-0 self-center text-xs font-bold text-rose-700 dark:text-rose-400">falsch</span>';
+    } else {
+      box = 'bg-white ring-1 ring-zinc-200 opacity-60 dark:bg-zinc-900 dark:ring-zinc-800'; mark = 'bg-zinc-100 text-zinc-400 dark:bg-zinc-800 dark:text-zinc-500';
+    }
+    return `<button data-act="opt" data-o="${oi}" ${checked ? 'disabled' : ''} class="w-full flex items-start gap-3 rounded-2xl p-4 text-left transition ${box} ${checked ? '' : PRESS}">
+      <span class="shrink-0 w-7 h-7 ${q.m ? 'rounded-lg' : 'rounded-full'} grid place-items-center text-sm font-bold ${mark}">${markIn}</span>
+      <span class="flex-1 pt-0.5 text-[15px] leading-snug">${esc(q.a[oi])}</span>${tail}
+    </button>`;
+  }).join('');
+
+  let feedback = '';
+  if (checked) {
+    const corr = q.r.map(i => q.a[i]);
+    const T = { ok: ['Richtig!', 'bg-emerald-50 text-emerald-900 ring-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-200 dark:ring-emerald-500/20'],
+      part: ['Teilweise richtig', 'bg-amber-50 text-amber-900 ring-amber-200 dark:bg-amber-500/10 dark:text-amber-200 dark:ring-amber-500/20'],
+      wrong: ['Falsch', 'bg-rose-50 text-rose-900 ring-rose-200 dark:bg-rose-500/10 dark:text-rose-200 dark:ring-rose-500/20'] }[res];
+    feedback = `<div class="pop mt-3 rounded-[1.5rem] p-4 ring-1 ${T[1]}">
+        <p class="text-lg font-bold">${T[0]}</p>
+        ${res !== 'ok' ? `<p class="mt-1 text-sm">${corr.length > 1 ? 'Die richtigen Antworten sind:' : 'Die richtige Antwort ist:'}</p>
+        <ul class="mt-1 space-y-1 text-sm font-semibold">${corr.map(t => `<li class="flex gap-2"><span class="shrink-0">✓</span><span>${esc(t)}</span></li>`).join('')}</ul>` : ''}
+      </div>${q.v === 0 ? unconfirmedBox(q, 'mt-3') : ''}`;
+  }
+
+  let actions;
+  if (exam) {
+    const last = session.i === n - 1;
+    actions = `<div class="flex gap-2">
+        <button data-act="prev" ${session.i === 0 ? 'disabled' : ''} class="${BTN_SECOND} !w-28 shrink-0 flex items-center justify-center gap-1">${ico('left', 'w-5 h-5')} Zurück</button>
+        ${last ? `<button data-act="finish" class="${BTN_PRIMARY}">Abgeben</button>` : `<button data-act="next" class="${BTN_PRIMARY} flex items-center justify-center gap-1">Weiter ${ico('chevron', 'w-5 h-5')}</button>`}
+      </div>
+      <p class="mt-2 text-center text-xs text-zinc-500 dark:text-zinc-400 tabular">${answered} von ${n} beantwortet</p>`;
+  } else if (!checked) {
+    actions = `<button data-act="check" ${sel.length ? '' : 'disabled'} class="${BTN_PRIMARY}">Prüfen</button>`;
+  } else {
+    actions = `<button data-act="next" class="${BTN_PRIMARY} flex items-center justify-center gap-1">${session.i === n - 1 ? 'Zur Auswertung' : 'Weiter'} ${ico('chevron', 'w-5 h-5')}</button>`;
+  }
+
+  const k = KAT[q.k];
+  $('#quiz').innerHTML = `<div class="h-full max-w-md mx-auto flex flex-col">
+    <div class="pt-safe shrink-0">
+      <div class="flex items-center gap-2 px-3 h-14">
+        <button data-act="quizClose" class="shrink-0 w-11 h-11 rounded-full grid place-items-center bg-white dark:bg-zinc-900 ring-1 ring-black/5 dark:ring-white/10 text-zinc-600 dark:text-zinc-300 active:scale-95 transition" aria-label="Schließen">${ico('x')}</button>
+        <div class="flex-1 min-w-0 text-center">
+          <p class="text-sm font-bold truncate">${esc(session.title)}</p>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 tabular">Frage ${session.i + 1} von ${n}</p>
+        </div>
+        <button data-act="mark" class="shrink-0 w-11 h-11 rounded-full grid place-items-center bg-white dark:bg-zinc-900 ring-1 ring-black/5 dark:ring-white/10 active:scale-95 transition ${isMarked(id) ? 'text-amber-500' : 'text-zinc-400 dark:text-zinc-500'}" aria-label="Frage markieren">${isMarked(id) ? icoFill('bookmark') : ico('bookmark')}</button>
+      </div>
+      <div class="mx-4 h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden"><div class="bar-anim h-full rounded-full bg-red-600" style="width:${progress}%"></div></div>
+    </div>
+    <div id="quizScroll" class="flex-1 overflow-y-auto overscroll-contain px-3 pt-4 pb-4">
+      <div class="${PANEL} p-5">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full ${KSTYLE[q.k].chip}">${esc(k.kurz)} · Frage ${NUM(id)}</span>
+          ${q.v === 0 ? '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-300">Lösung unbestätigt</span>' : ''}
+        </div>
+        <h2 class="mt-3 text-[18px] font-semibold leading-snug">${esc(q.f)}</h2>
+        <p class="mt-2 text-sm text-zinc-500 dark:text-zinc-400">${q.m ? 'Wählen Sie eine oder mehrere Antworten:' : 'Wählen Sie eine Antwort:'}</p>
+      </div>
+      <div class="mt-3 space-y-2">${opts}</div>
+      ${feedback}
+    </div>
+    <div class="shrink-0 px-3 pt-3 pb-safe-3 bg-zinc-100/90 dark:bg-zinc-950/90 backdrop-blur-xl border-t border-zinc-200/70 dark:border-zinc-800">${actions}</div>
+  </div>`;
+}
+function quizScrollTop() { const s = $('#quizScroll'); if (s) s.scrollTop = 0; }
+
+function selectOpt(oi) {
+  const q = curQ(), id = q.id;
+  if (session.mode === 'learn' && session.checked[id]) return;
+  let sel = (session.sel[id] || []).slice();
+  if (q.m) sel = sel.includes(oi) ? sel.filter(x => x !== oi) : sel.concat(oi);
+  else sel = sel.includes(oi) && session.mode === 'exam' ? [] : [oi];
+  session.sel[id] = sel;
+  const y = $('#quizScroll') ? $('#quizScroll').scrollTop : 0;
+  renderQuiz();
+  if ($('#quizScroll')) $('#quizScroll').scrollTop = y;
+}
+function checkAnswer() {
+  const q = curQ(), sel = session.sel[q.id] || [];
+  if (!sel.length) return;
+  const r = grade(q, sel);
+  session.checked[q.id] = true; session.res[q.id] = r;
+  record(q.id, r === 'ok');
+  if (navigator.vibrate && r !== 'ok') { try { navigator.vibrate(40); } catch (e) {} }
+  renderQuiz();
+  const s = $('#quizScroll'); if (s) s.scrollTo({ top: s.scrollHeight, behavior: 'smooth' });
+}
+function nextQ() {
+  if (session.i < session.ids.length - 1) { session.i++; renderQuiz(); quizScrollTop(); return; }
+  if (session.mode === 'exam') { finishExam(); return; }
+  session.done = true; renderQuiz();
+}
+function prevQ() { if (session.i > 0) { session.i--; renderQuiz(); quizScrollTop(); } }
+function finishExam(force) {
+  const open = session.ids.filter(id => !(session.sel[id] || []).length).length;
+  if (open && !force) {
+    confirmDlg({ title: 'Prüfung abgeben?', text: `${open} ${open === 1 ? 'Frage ist' : 'Fragen sind'} noch unbeantwortet und ${open === 1 ? 'zählt' : 'zählen'} als falsch.`, ok: 'Abgeben', cancel: 'Zurück',
+      onOk: () => { popLayers(1); setTimeout(() => finishExam(true), 0); } });
+    return;
+  }
+  session.ids.forEach(id => { const q = BY_ID[id], sel = session.sel[id] || []; session.res[id] = sel.length ? grade(q, sel) : 'wrong'; record(id, session.res[id] === 'ok'); });
+  const ok = session.ids.filter(id => session.res[id] === 'ok').length;
+  const entry = { t: Date.now(), d: Date.now() - session.start, n: session.ids.length, ok, ids: session.ids, sel: session.sel, res: session.res };
+  state.exams.unshift(entry); state.exams = state.exams.slice(0, 20);
+  LS.set('sef_exams_v1', state.exams);
+  session.done = true; session.entry = entry;
+  renderQuiz(); quizScrollTop();
+}
+
+/* ---------- Auswertung ---------- */
+function ringChart(p) {
+  const r = 52, c = 2 * Math.PI * r, col = p >= 80 ? 'text-emerald-500' : p >= 60 ? 'text-amber-500' : 'text-rose-500';
+  return `<div class="relative w-40 h-40 mx-auto">
+    <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90"><circle cx="60" cy="60" r="${r}" fill="none" stroke-width="11" class="stroke-zinc-200 dark:stroke-zinc-800"/>
+    <circle id="ringFg" cx="60" cy="60" r="${r}" fill="none" stroke-width="11" stroke-linecap="round" stroke="currentColor" class="ring-anim ${col}" stroke-dasharray="${c}" stroke-dashoffset="${c}" data-off="${c * (1 - p / 100)}"/></svg>
+    <div class="absolute inset-0 grid place-items-center"><p class="text-4xl font-bold tabular">${p}<span class="text-lg font-semibold"> %</span></p></div>
+  </div>`;
+}
+function resultList(ids, sel, res, onlyWrong) {
+  const list = ids.filter(id => !onlyWrong || res[id] !== 'ok');
+  if (!list.length) return '';
+  return list.map(id => {
+    const q = BY_ID[id], my = sel[id] || [], r = res[id];
+    const badge = { ok: ['richtig', 'bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-300'], part: ['teilweise', 'bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-300'], wrong: ['falsch', 'bg-rose-100 text-rose-800 dark:bg-rose-400/15 dark:text-rose-300'] }[r];
+    return `<article class="${PANEL} p-4">
+      <div class="flex items-center gap-2"><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full ${KSTYLE[q.k].chip}">${esc(KAT[q.k].kurz)} · ${NUM(id)}</span>
+        <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${badge[1]}">${my.length ? badge[0] : 'nicht beantwortet'}</span></div>
+      <h3 class="mt-2 font-semibold leading-snug">${esc(q.f)}</h3>
+      <ul class="mt-2.5 space-y-1.5">${q.a.map((t, i) => {
+        const ok = q.r.includes(i), on = my.includes(i);
+        const cls = ok ? 'text-emerald-800 dark:text-emerald-300 font-medium' : on ? 'text-rose-700 dark:text-rose-300 line-through decoration-rose-400/60' : 'text-zinc-400 dark:text-zinc-500';
+        const dot = ok ? `<span class="shrink-0 mt-0.5 w-5 h-5 rounded-full grid place-items-center bg-emerald-500 text-white">${ico('check', 'w-3.5 h-3.5', 3)}</span>`
+          : on ? `<span class="shrink-0 mt-0.5 w-5 h-5 rounded-full grid place-items-center bg-rose-500 text-white">${ico('x', 'w-3.5 h-3.5', 3)}</span>`
+          : '<span class="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-zinc-100 dark:bg-zinc-800"></span>';
+        return `<li class="flex gap-2.5 text-[15px] leading-snug ${cls}">${dot}<span>${esc(t)}${on && ok ? ' <span class="text-xs font-semibold opacity-70">(gewählt)</span>' : ''}</span></li>`;
+      }).join('')}</ul>
+      ${q.v === 0 ? unconfirmedBox(q, 'mt-3') : ''}
+    </article>`;
+  }).join('');
+}
+function renderSummary() {
+  const exam = session.mode === 'exam';
+  const ids = session.ids, res = session.res;
+  const ok = ids.filter(id => res[id] === 'ok').length, part = ids.filter(id => res[id] === 'part').length, wrong = ids.length - ok - part;
+  const p = pct(ok, ids.length);
+  const msg = p === 100 ? 'Perfekt – alles richtig!' : p >= 80 ? 'Sehr gut!' : p >= 60 ? 'Gut – da geht noch was.' : 'Dranbleiben – Übung macht den Meister.';
+  const wrongIds = ids.filter(id => res[id] !== 'ok');
+
+  let breakdown = '';
+  if (exam) {
+    breakdown = `<section class="${PANEL} p-4 space-y-3">${KATS.map(k => {
+      const kids = ids.filter(id => BY_ID[id].k === k.id); if (!kids.length) return '';
+      const kok = kids.filter(id => res[id] === 'ok').length;
+      return `<div><div class="flex justify-between text-sm"><span class="font-semibold">${esc(k.kurz)}</span><span class="tabular text-zinc-500 dark:text-zinc-400">${kok}/${kids.length}</span></div>
+        <div class="mt-1.5 h-2 rounded-full bg-zinc-200/80 dark:bg-zinc-800 overflow-hidden"><div class="h-full rounded-full ${KSTYLE[k.id].bar}" style="width:${pct(kok, kids.length)}%"></div></div></div>`;
+    }).join('')}</section>`;
+  }
+
+  $('#quiz').innerHTML = `<div class="h-full max-w-md mx-auto flex flex-col">
+    <div class="pt-safe shrink-0">
+      <div class="flex items-center gap-2 px-3 h-14">
+        <button data-act="quizClose" class="shrink-0 w-11 h-11 rounded-full grid place-items-center bg-white dark:bg-zinc-900 ring-1 ring-black/5 dark:ring-white/10 text-zinc-600 dark:text-zinc-300 active:scale-95 transition" aria-label="Schließen">${ico('x')}</button>
+        <div class="flex-1 min-w-0 text-center"><p class="text-sm font-bold truncate">${exam ? 'Prüfung abgegeben' : 'Runde beendet'}</p><p class="text-xs text-zinc-500 dark:text-zinc-400">${esc(session.title)}</p></div>
+        <span class="w-11"></span>
+      </div>
+    </div>
+    <div id="quizScroll" class="flex-1 overflow-y-auto overscroll-contain px-3 pt-3 pb-4 space-y-3">
+      <section class="${PANEL} p-5 text-center fade-in">
+        ${ringChart(p)}
+        <p class="mt-3 text-xl font-bold">${msg}</p>
+        <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400 tabular">${ok} von ${ids.length} richtig${exam ? ` · ${fmtDur(session.entry ? session.entry.d : Date.now() - session.start)}` : ''}</p>
+        <div class="mt-4 grid grid-cols-3 gap-2">
+          ${miniStat(ok, 'richtig', 'text-emerald-600 dark:text-emerald-400')}${miniStat(part, 'teilweise', 'text-amber-600 dark:text-amber-400')}${miniStat(wrong, 'falsch', 'text-rose-600 dark:text-rose-400')}
+        </div>
+      </section>
+      ${breakdown}
+      ${wrongIds.length ? sectionTitle(exam ? 'Fehler ansehen' : 'Nicht richtig beantwortet') + resultList(ids, session.sel, res, true) : ''}
+    </div>
+    <div class="shrink-0 px-3 pt-3 pb-safe-3 bg-zinc-100/90 dark:bg-zinc-950/90 backdrop-blur-xl border-t border-zinc-200/70 dark:border-zinc-800 space-y-2">
+      ${wrongIds.length ? `<button data-act="repeatWrong" class="${BTN_PRIMARY} flex items-center justify-center gap-2">${ico('redo')} ${wrongIds.length === 1 ? 'Diese Frage' : `Diese ${wrongIds.length} Fragen`} wiederholen</button>` : ''}
+      <div class="flex gap-2">
+        ${exam ? `<button data-act="examAgain" class="${BTN_SECOND}">Neue Prüfung</button>` : `<button data-act="learnAgain" class="${BTN_SECOND}">Neue Runde</button>`}
+        <button data-act="quizClose" class="${BTN_SECOND}">Fertig</button>
+      </div>
+    </div>
+  </div>`;
+  requestAnimationFrame(() => requestAnimationFrame(() => { const r = $('#ringFg'); if (r) r.style.strokeDashoffset = r.dataset.off; }));
+}
+
+/* Ältere Prüfung ansehen (Sheet) */
+function openExamSheet(i) {
+  const e = state.exams[i]; if (!e) return;
+  const p = pct(e.ok, e.n);
+  openSheet(`<div class="pt-2 text-center">
+      <p class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">${fmtDate(e.t)}, ${fmtTime(e.t)}</p>
+      <p class="mt-1 text-4xl font-bold tabular">${p} %</p>
+      <p class="text-sm text-zinc-500 dark:text-zinc-400 tabular">${e.ok} von ${e.n} richtig · ${fmtDur(e.d)}</p>
+    </div>
+    <div class="mt-4 space-y-3">${e.ok === e.n ? `<p class="text-center text-sm text-zinc-500">Alles richtig – keine Fehler.</p>` : sectionTitle('Fehler') + resultList(e.ids.filter(id => BY_ID[id]), e.sel, e.res, true)}</div>`);
+}
+
+/* =====================================================================
+   Sheet, Dialog, Snackbar
+   ===================================================================== */
+let sheetOpen = false;
+function openSheet(html) {
+  $('#sheetBody').innerHTML = html; $('#sheetBody').scrollTop = 0;
+  const sh = $('#sheet');
+  if (!sheetOpen) { pushLayer('sheet'); sheetOpen = true; }
+  sh.classList.remove('hidden');
+  requestAnimationFrame(() => { $('#sheetBg').classList.replace('opacity-0', 'opacity-100'); $('#sheetPanel').classList.remove('translate-y-full'); });
+}
+function hideSheet() {
+  sheetOpen = false;
+  $('#sheetBg').classList.replace('opacity-100', 'opacity-0');
+  $('#sheetPanel').classList.add('translate-y-full');
+  setTimeout(() => { if (!sheetOpen) $('#sheet').classList.add('hidden'); }, 380);
+}
+let dlgCtx = null;
+function confirmDlg(o) {
+  dlgCtx = o;
+  $('#dlgBox').innerHTML = `<h3 class="text-lg font-bold">${esc(o.title)}</h3>${o.text ? `<p class="mt-2 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300">${esc(o.text)}</p>` : ''}
+    <div class="mt-6 flex gap-2"><button data-act="dlgCancel" class="${BTN_SECOND}">${esc(o.cancel || 'Abbrechen')}</button>
+    <button data-act="dlgOk" class="w-full h-12 rounded-full font-semibold text-white ${o.danger ? 'bg-rose-600 active:bg-rose-700' : 'bg-red-600 active:bg-red-700'}">${esc(o.ok || 'OK')}</button></div>`;
+  $('#dlgBox').classList.remove('pop'); void $('#dlgBox').offsetWidth; $('#dlgBox').classList.add('pop');
+  $('#dlg').classList.remove('hidden');
+  pushLayer('dlg');
+}
+function hideDlg() { $('#dlg').classList.add('hidden'); dlgCtx = null; }
+let toastTimer = null;
+function toast(msg, ms = 2600) {
+  const t = $('#toast');
+  t.innerHTML = `<div class="pop pointer-events-auto max-w-sm rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 px-5 py-3 text-sm font-medium shadow-xl">${esc(msg)}</div>`;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.innerHTML = ''; }, ms);
+}
+
+/* Einstellungen */
+const themePref = () => { const t = LS.get('sef_theme', null); return t === 'light' || t === 'dark' ? t : 'auto'; };
+const systemDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+function applyTheme() {
+  const p = themePref(), dark = p === 'auto' ? systemDark() : p === 'dark';
+  document.documentElement.classList.toggle('dark', dark);
+  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', dark ? '#09090b' : '#f4f4f5');
+}
+function pill(act, opts, cur) {
+  return `<div class="flex p-1 gap-1 rounded-full bg-zinc-200/70 dark:bg-zinc-800">${opts.map(([v, l]) => `<button data-act="${act}" data-v="${v}" class="flex-1 h-10 rounded-full text-sm font-semibold transition ${String(v) === String(cur) ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-600 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}">${l}</button>`).join('')}</div>`;
+}
+function settingsHtml() {
+  const lbl = t => `<p class="mt-5 mb-2 px-1 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">${t}</p>`;
+  return `<h3 class="pt-2 text-lg font-bold">Einstellungen</h3>
+    ${lbl('Darstellung')}${pill('theme', [['auto', 'Automatisch'], ['light', 'Hell'], ['dark', 'Dunkel']], themePref())}
+    ${lbl('Fragen pro Lernrunde')}${pill('round', [[10, '10'], [20, '20'], [30, '30']], state.set.round)}
+    <button data-act="shuffleToggle" class="mt-5 w-full flex items-center gap-3 rounded-2xl bg-white dark:bg-zinc-800/70 ring-1 ring-black/5 dark:ring-white/5 px-4 py-3.5 text-left">
+      <span class="shrink-0 text-zinc-500 dark:text-zinc-400">${ico('shuffle')}</span>
+      <span class="flex-1"><span class="block font-semibold">Antworten mischen</span><span class="block text-xs text-zinc-500 dark:text-zinc-400">Reihenfolge a–d bei jeder Frage neu</span></span>
+      <span class="w-11 h-6 rounded-full p-0.5 transition-colors ${state.set.shuffle ? 'bg-emerald-500' : 'bg-zinc-300 dark:bg-zinc-700'}"><span class="block w-5 h-5 rounded-full bg-white shadow transition-transform ${state.set.shuffle ? 'translate-x-5' : ''}"></span></span>
+    </button>
+    <button data-act="reset" class="mt-2 w-full flex items-center gap-3 rounded-2xl bg-white dark:bg-zinc-800/70 ring-1 ring-black/5 dark:ring-white/5 px-4 py-3.5 text-left text-rose-600 dark:text-rose-400">
+      <span class="shrink-0">${ico('trash')}</span><span class="flex-1 font-semibold">Lernfortschritt zurücksetzen</span>
+    </button>
+    <div class="mt-5 rounded-2xl bg-white dark:bg-zinc-800/70 ring-1 ring-black/5 dark:ring-white/5 p-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+      <p class="font-semibold text-zinc-900 dark:text-zinc-50">Über diese App</p>
+      <p class="mt-1">Inoffizielle Lernhilfe für die Ausbildung zum Sicheren Einsatzfahrer (SEF). Die ${FRAGEN.length} Fragen stammen aus dem Kurs „Fragen SEF“ (LV Tirol), aufgeteilt in ${KATS.length} Kategorien wie dort.</p>
+      <p class="mt-2">Bei ${UNBESTAETIGT.length} Fragen ist die Lösung ein <b>Vorschlag</b> (gelb markiert), weil sie in den Screenshots noch unbeantwortet waren.</p>
+      <p class="mt-2">Dein Lernstand wird nur auf diesem Gerät gespeichert.</p>
+    </div>
+    <p class="mt-4 mb-2 text-center text-xs font-medium text-zinc-400 dark:text-zinc-500">SEF Lernapp · Version ${APP_VERSION}</p>`;
+}
+const openSettings = () => openSheet(settingsHtml());
+function unconfirmedInfo() {
+  const byK = KATS.map(k => [k, UNBESTAETIGT.filter(q => q.k === k.id).length]).filter(x => x[1]);
+  openSheet(`<h3 class="pt-2 text-lg font-bold">Lösungsvorschläge</h3>
+    <p class="mt-2 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300">In deinen Screenshots waren <b>${UNBESTAETIGT.length} Fragen</b> noch unbeantwortet. Darum zeigte der Kurs dort keine Lösung an. Für diese Fragen ist die Lösung ein begründeter Vorschlag und gelb markiert:</p>
+    <ul class="mt-3 space-y-1 text-sm">${byK.map(([k, n]) => `<li class="flex justify-between rounded-xl bg-white dark:bg-zinc-800/70 px-3 py-2"><span>${esc(k.name)}</span><b class="tabular">${n}</b></li>`).join('')}</ul>
+    <p class="mt-3 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300"><b>So bekommst du die echten Lösungen:</b> Im Kurs bei diesen Fragen eine Antwort wählen und auf „Prüfen“ tippen. Danach erscheint „Die richtige Antwort ist …“. Schick mir davon Screenshots, dann trage ich die Lösungen ein.</p>
+    <button data-act="showUnconfirmed" class="mt-4 ${BTN_SECOND}">Diese Fragen ansehen</button>`);
+}
+
+/* =====================================================================
+   Klicks (ein zentraler Handler)
+   ===================================================================== */
+document.addEventListener('click', e => {
+  const tabBtn = e.target.closest('[data-tab]');
+  if (tabBtn) { switchTab(tabBtn.dataset.tab); return; }
+  const el = e.target.closest('[data-act]'); if (!el || el.disabled) return;
+  const a = el.dataset.act, k = el.dataset.k;
+  switch (a) {
+    case 'learnAll': startLearn(FRAGEN, 'Lernrunde'); break;
+    case 'learnWrong': startLearn(FRAGEN.filter(q => isWrong(q.id)), 'Falsche wiederholen', 999); break;
+    case 'learnMarked': startLearn(FRAGEN.filter(q => isMarked(q.id)), 'Markierte Fragen', 999); break;
+    case 'cat': openCatSheet(k); break;
+    case 'catLearn': startLearn(FRAGEN.filter(q => q.k === k), KAT[k].kurz); break;
+    case 'catOrder': startInOrder(FRAGEN.filter(q => q.k === k), KAT[k].kurz); break;
+    case 'catWrong': startLearn(FRAGEN.filter(q => q.k === k && isWrong(q.id)), `${KAT[k].kurz} – Falsche`, 999); break;
+    case 'catBrowse': state.filter = k; state.search = ''; state.tab = 'fragen'; LS.set('sef_tab', 'fragen'); renderAfterPop = true; popLayers(1); break;
+    case 'unconfirmedInfo': unconfirmedInfo(); break;
+    case 'showUnconfirmed': state.filter = 'unbestaetigt'; state.search = ''; state.tab = 'fragen'; LS.set('sef_tab', 'fragen'); renderAfterPop = true; popLayers(1); break;
+    case 'examN': state.set.examN = el.dataset.n === 'alle' ? 'alle' : +el.dataset.n; saveSet(); render(); break;
+    case 'examStart': startExam(); break;
+    case 'examShow': openExamSheet(+el.dataset.i); break;
+    case 'filter': state.filter = el.dataset.f; render(); break;
+    case 'reveal': state.set.reveal = !state.set.reveal; state.revealed.clear(); saveSet(); render(); break;
+    case 'revealOne': state.revealed.add(el.dataset.id); renderFragenList(); break;
+    case 'markList': { const on = toggleMark(el.dataset.id); if (state.filter === 'markiert') render(); else renderFragenList(); toast(on ? 'Frage markiert' : 'Markierung entfernt', 1600); break; }
+    /* Quiz */
+    case 'opt': selectOpt(+el.dataset.o); break;
+    case 'check': checkAnswer(); break;
+    case 'next': nextQ(); break;
+    case 'prev': prevQ(); break;
+    case 'finish': finishExam(); break;
+    case 'mark': { const on = toggleMark(curQ().id); const y = $('#quizScroll').scrollTop; renderQuiz(); $('#quizScroll').scrollTop = y; toast(on ? 'Frage markiert' : 'Markierung entfernt', 1600); break; }
+    case 'quizClose': if (examRunning()) askAbortExam(); else popLayers(1); break;
+    case 'repeatWrong': {
+      const ids = session.ids.filter(id => session.res[id] !== 'ok');
+      session = newSession('learn', 'Fehler wiederholen', shuffle(ids.slice())); renderQuiz(); quizScrollTop(); break;
+    }
+    case 'learnAgain': {
+      const m = session.meta;
+      const list = m.list ? m.list.map(id => BY_ID[id]) : session.ids.map(id => BY_ID[id]);
+      session = m.inOrder ? newSession('learn', session.title, session.ids, m) : newSession('learn', session.title, pickLearn(list, Math.min(m.n || state.set.round, list.length)).map(q => q.id), m);
+      renderQuiz(); quizScrollTop(); break;
+    }
+    case 'examAgain': session = newSession('exam', 'Prüfungssimulation', pickExam(state.set.examN === 'alle' ? FRAGEN.length : state.set.examN)); renderQuiz(); quizScrollTop(); break;
+    /* Sheets & Dialog */
+    case 'sheetClose': popLayers(1); break;
+    case 'settings': openSettings(); break;
+    case 'theme': if (el.dataset.v === 'auto') LS.del('sef_theme'); else LS.set('sef_theme', el.dataset.v); applyTheme(); openSheet(settingsHtml()); break;
+    case 'round': state.set.round = +el.dataset.v; saveSet(); openSheet(settingsHtml()); render(); break;
+    case 'shuffleToggle': state.set.shuffle = !state.set.shuffle; saveSet(); openSheet(settingsHtml()); break;
+    case 'reset': confirmDlg({ title: 'Lernfortschritt zurücksetzen?', text: 'Alle Antworten, Markierungen und Prüfungsergebnisse auf diesem Gerät werden gelöscht.', ok: 'Zurücksetzen', danger: true,
+      onOk: () => { state.stats = {}; state.marks = []; state.exams = []; ['sef_stats_v1', 'sef_marks_v1', 'sef_exams_v1'].forEach(LS.del); popLayers(2); render(); toast('Lernfortschritt zurückgesetzt'); } }); break;
+    case 'dlgOk': { const f = dlgCtx && dlgCtx.onOk; if (f) f(); else popLayers(1); break; }
+    case 'dlgCancel': popLayers(1); break;
+  }
+});
+/* Nach dem Schließen des Sheets mit Tab-Wechsel neu zeichnen */
+let renderAfterPop = false;
+window.addEventListener('popstate', () => { if (renderAfterPop && !stack.length) { renderAfterPop = false; window.scrollTo(0, 0); render(); } });
+
+document.addEventListener('input', e => {
+  if (e.target.id === 'search') { state.search = e.target.value; renderFragenList(); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.id === 'search') e.target.blur();
+});
+
+/* =====================================================================
+   Start
+   ===================================================================== */
+try { history.scrollRestoration = 'manual'; } catch (e) {}
+applyTheme();
+if (window.matchMedia) {
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  const onChange = () => { if (themePref() === 'auto') applyTheme(); };
+  mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+}
+render();
+
+/* Service Worker: App startet auch offline; neue Versionen werden automatisch geladen
+   (aber nie mitten in einer Lernrunde oder Prüfung – dann erst nach dem Schließen). */
+let reloadPending = false, reloading = false;
+function reloadNow() { if (!reloading) { reloading = true; location.reload(); } }
+function checkAppUpdate() {
+  if (!('serviceWorker' in navigator) || !navigator.serviceWorker.getRegistration) return;
+  navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(() => {});
+}
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  const hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('message', e => {
+    if (!e.data || !e.data.cache || e.data.cache === `sef-lernapp-v${APP_BUILD}`) return;
+    if (session || dlgCtx) reloadPending = true; else reloadNow();
+  });
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (hadController && navigator.serviceWorker.controller) navigator.serviceWorker.controller.postMessage('version');
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') return;
+    if (reloadPending && !session && !dlgCtx) reloadNow(); else checkAppUpdate();
+  });
+  window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' }).catch(() => {}); });
+}
+})();
+</script>
+</body>
+</html>

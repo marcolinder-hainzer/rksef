@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "SEF Lernapp – Sicherer Einsatzfahrer",
+  "short_name": "SEF Lernapp",
+  "description": "Lernapp mit den Multiple-Choice-Fragen zur Ausbildung „Sicherer Einsatzfahrer“ (SEF).",
+  "lang": "de",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f4f5",
+  "theme_color": "#f4f4f5",
+  "categories": ["education"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
